@@ -1,0 +1,962 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище LabModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Lab.dbo.Accountant" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Accountant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_register" Type="int" />
+          <Property Name="last_login_date" Type="datetime" />
+          <Property Name="id_laboratory_services" Type="int" />
+          <Property Name="id_insurance_company" Type="int" />
+          <Property Name="id_check" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Lab.dbo.Administrator" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_registar" Type="int" />
+        </EntityType>
+        <EntityType Name="Analyzer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="time_order" Type="time" Precision="7" />
+          <Property Name="time_work" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="CheckCompany">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_insurance_company" Type="int" />
+          <Property Name="check" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Lab.dbo.Client" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="fathersname" Type="varchar" MaxLength="50" />
+          <Property Name="datebirth" Type="time" Precision="7" />
+          <Property Name="seriespassport" Type="int" />
+          <Property Name="numberpassport" Type="int" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="14" />
+          <Property Name="email" Type="nchar" MaxLength="10" />
+          <Property Name="numberpolicy" Type="nchar" MaxLength="10" />
+          <Property Name="typepolicy" Type="int" />
+          <Property Name="idcompany" Type="int" />
+          <Property Name="ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="lastenter" Type="time" Precision="7" />
+          <Property Name="id_register" Type="int" />
+        </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="namecompany" Type="varchar" MaxLength="50" />
+          <Property Name="addresscompany" Type="varchar" MaxLength="50" />
+          <Property Name="INN" Type="bigint" />
+          <Property Name="BIK" Type="bigint" />
+          <Property Name="checkingaccount" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LabAssistant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="labwork" Type="varchar" MaxLength="50" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="fathername" Type="varchar" MaxLength="50" />
+          <Property Name="lastdatientrance" Type="time" Precision="7" />
+          <Property Name="service" Type="varchar" MaxLength="50" />
+          <Property Name="id_register" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Lab.dbo.Order" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="data_created" Type="time" Precision="7" />
+          <Property Name="services" Type="varchar" MaxLength="50" />
+          <Property Name="id_status" Type="int" />
+          <Property Name="id_status_service" Type="int" />
+          <Property Name="order_time" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="Register">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="login" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="servicecode" Type="int" />
+          <Property Name="servicename" Type="varchar" MaxLength="50" />
+          <Property Name="timework" Type="time" Precision="7" />
+          <Property Name="id_assistant" Type="int" />
+          <Property Name="analyzer" Type="varchar" MaxLength="50" />
+          <Property Name="price" Type="float" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status_Services ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_status" Type="int" />
+          <Property Name="id_service" Type="int" />
+          <Property Name="id_laborant" Type="int" />
+          <Property Name="id_analyzer" Type="int" />
+          <Property Name="date" Type="time" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Accountant_CheckCompany">
+          <End Role="CheckCompany" Type="Self.CheckCompany" Multiplicity="0..1" />
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckCompany">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accountant">
+              <PropertyRef Name="id_insurance_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accountant_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accountant">
+              <PropertyRef Name="id_register" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accountant_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accountant">
+              <PropertyRef Name="id_laboratory_services" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Administrator_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="id_registar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckCompany_InsuranceCompany">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="CheckCompany" Type="Self.CheckCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CheckCompany">
+              <PropertyRef Name="id_insurance_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="id_register" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabAssistant_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="LabAssistant" Type="Self.LabAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LabAssistant">
+              <PropertyRef Name="id_register" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status_Services ">
+          <End Role="Status_Services " Type="Self.Status_Services " Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_Services ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="id_status_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_LabAssistant">
+          <End Role="LabAssistant" Type="Self.LabAssistant" Multiplicity="0..1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabAssistant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="id_assistant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Services _Analyzer">
+          <End Role="Analyzer" Type="Self.Analyzer" Multiplicity="0..1" />
+          <End Role="Status_Services " Type="Self.Status_Services " Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_Services ">
+              <PropertyRef Name="id_analyzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Services _Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Status_Services " Type="Self.Status_Services " Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_Services ">
+              <PropertyRef Name="id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Services _Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Status_Services " Type="Self.Status_Services " Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_Services ">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LabModelContainer">
+          <EntitySet Name="Analyzer" EntityType="Self.Analyzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckCompany" EntityType="Self.CheckCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceCompany" EntityType="Self.InsuranceCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LabAssistant" EntityType="Self.LabAssistant" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Register" EntityType="Self.Register" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status_Services " EntityType="Self.Status_Services " Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Accountant" EntityType="Self.Accountant" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Accountant].[id] AS [id], 
+    [Accountant].[id_register] AS [id_register], 
+    [Accountant].[last_login_date] AS [last_login_date], 
+    [Accountant].[id_laboratory_services] AS [id_laboratory_services], 
+    [Accountant].[id_insurance_company] AS [id_insurance_company], 
+    [Accountant].[id_check] AS [id_check]
+    FROM [dbo].[Accountant] AS [Accountant]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Administrator].[id] AS [id], 
+    [Administrator].[id_registar] AS [id_registar]
+    FROM [dbo].[Administrator] AS [Administrator]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Client" EntityType="Self.Client" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Client].[id] AS [id], 
+    [Client].[login] AS [login], 
+    [Client].[password] AS [password], 
+    [Client].[firstname] AS [firstname], 
+    [Client].[lastname] AS [lastname], 
+    [Client].[fathersname] AS [fathersname], 
+    [Client].[datebirth] AS [datebirth], 
+    [Client].[seriespassport] AS [seriespassport], 
+    [Client].[numberpassport] AS [numberpassport], 
+    [Client].[telephone] AS [telephone], 
+    [Client].[email] AS [email], 
+    [Client].[numberpolicy] AS [numberpolicy], 
+    [Client].[typepolicy] AS [typepolicy], 
+    [Client].[idcompany] AS [idcompany], 
+    [Client].[ip] AS [ip], 
+    [Client].[lastenter] AS [lastenter], 
+    [Client].[id_register] AS [id_register]
+    FROM [dbo].[Client] AS [Client]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Order" EntityType="Self.Order" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order].[id] AS [id], 
+    [Order].[data_created] AS [data_created], 
+    [Order].[services] AS [services], 
+    [Order].[id_status] AS [id_status], 
+    [Order].[id_status_service] AS [id_status_service], 
+    [Order].[order_time] AS [order_time]
+    FROM [dbo].[Order] AS [Order]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Accountant_CheckCompany" Association="Self.FK_Accountant_CheckCompany">
+            <End Role="CheckCompany" EntitySet="CheckCompany" />
+            <End Role="Accountant" EntitySet="Accountant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accountant_Register" Association="Self.FK_Accountant_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="Accountant" EntitySet="Accountant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accountant_Service" Association="Self.FK_Accountant_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Accountant" EntitySet="Accountant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Administrator_Register" Association="Self.FK_Administrator_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckCompany_InsuranceCompany" Association="Self.FK_CheckCompany_InsuranceCompany">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="CheckCompany" EntitySet="CheckCompany" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Register" Association="Self.FK_Client_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabAssistant_Register" Association="Self.FK_LabAssistant_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="LabAssistant" EntitySet="LabAssistant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status_Services " Association="Self.FK_Order_Status_Services ">
+            <End Role="Status_Services " EntitySet="Status_Services " />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_LabAssistant" Association="Self.FK_Service_LabAssistant">
+            <End Role="LabAssistant" EntitySet="LabAssistant" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Services _Analyzer" Association="Self.FK_Status_Services _Analyzer">
+            <End Role="Analyzer" EntitySet="Analyzer" />
+            <End Role="Status_Services " EntitySet="Status_Services " />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Services _Service" Association="Self.FK_Status_Services _Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Status_Services " EntitySet="Status_Services " />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Services _Status" Association="Self.FK_Status_Services _Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Status_Services " EntitySet="Status_Services " />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LabModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Analyzer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="time_order" Type="Time" Precision="7" />
+          <Property Name="time_work" Type="Time" Precision="7" />
+          <NavigationProperty Name="Status_Services_" Relationship="Self.FK_Status_Services__Analyzer" FromRole="Analyzer" ToRole="Status_Services_" />
+        </EntityType>
+        <EntityType Name="CheckCompany">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_insurance_company" Type="Int32" />
+          <Property Name="check" Type="Int32" />
+          <NavigationProperty Name="Accountant" Relationship="Self.FK_Accountant_CheckCompany" FromRole="CheckCompany" ToRole="Accountant" />
+          <NavigationProperty Name="InsuranceCompany" Relationship="Self.FK_CheckCompany_InsuranceCompany" FromRole="CheckCompany" ToRole="InsuranceCompany" />
+        </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="namecompany" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="addresscompany" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="INN" Type="Int64" />
+          <Property Name="BIK" Type="Int64" />
+          <Property Name="checkingaccount" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CheckCompany" Relationship="Self.FK_CheckCompany_InsuranceCompany" FromRole="InsuranceCompany" ToRole="CheckCompany" />
+        </EntityType>
+        <EntityType Name="LabAssistant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="labwork" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fathername" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastdatientrance" Type="Time" Precision="7" />
+          <Property Name="service" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_register" Type="Int32" />
+          <NavigationProperty Name="Register" Relationship="Self.FK_LabAssistant_Register" FromRole="LabAssistant" ToRole="Register" />
+          <NavigationProperty Name="Service1" Relationship="Self.FK_Service_LabAssistant" FromRole="LabAssistant" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Register">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="LabAssistant" Relationship="Self.FK_LabAssistant_Register" FromRole="Register" ToRole="LabAssistant" />
+          <NavigationProperty Name="Accountant" Relationship="Self.FK_Accountant_Register" FromRole="Register" ToRole="Accountant" />
+          <NavigationProperty Name="Administrator" Relationship="Self.FK_Administrator_Register" FromRole="Register" ToRole="Administrator" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Client_Register" FromRole="Register" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="servicecode" Type="Int32" />
+          <Property Name="servicename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="timework" Type="Time" Precision="7" />
+          <Property Name="id_assistant" Type="Int32" />
+          <Property Name="analyzer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Double" />
+          <NavigationProperty Name="LabAssistant" Relationship="Self.FK_Service_LabAssistant" FromRole="Service" ToRole="LabAssistant" />
+          <NavigationProperty Name="Accountant" Relationship="Self.FK_Accountant_Service" FromRole="Service" ToRole="Accountant" />
+          <NavigationProperty Name="Status_Services_" Relationship="Self.FK_Status_Services__Service" FromRole="Service" ToRole="Status_Services_" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Status" FromRole="Status" ToRole="Order" />
+          <NavigationProperty Name="Status_Services_" Relationship="Self.FK_Status_Services__Status" FromRole="Status" ToRole="Status_Services_" />
+        </EntityType>
+        <EntityType Name="Status_Services_">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_status" Type="Int32" />
+          <Property Name="id_service" Type="Int32" />
+          <Property Name="id_laborant" Type="Int32" />
+          <Property Name="id_analyzer" Type="Int32" />
+          <Property Name="date" Type="Time" Precision="7" />
+          <NavigationProperty Name="Analyzer" Relationship="Self.FK_Status_Services__Analyzer" FromRole="Status_Services_" ToRole="Analyzer" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Status_Services__Service" FromRole="Status_Services_" ToRole="Service" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Status_Services__Status" FromRole="Status_Services_" ToRole="Status" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Status_Services_" FromRole="Status_Services_" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Accountant">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_register" Type="Int32" />
+          <Property Name="last_login_date" Type="DateTime" Precision="3" />
+          <Property Name="id_laboratory_services" Type="Int32" />
+          <Property Name="id_insurance_company" Type="Int32" />
+          <Property Name="id_check" Type="Int32" />
+          <NavigationProperty Name="CheckCompany" Relationship="Self.FK_Accountant_CheckCompany" FromRole="Accountant" ToRole="CheckCompany" />
+          <NavigationProperty Name="Register" Relationship="Self.FK_Accountant_Register" FromRole="Accountant" ToRole="Register" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Accountant_Service" FromRole="Accountant" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Administrator">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_registar" Type="Int32" />
+          <NavigationProperty Name="Register" Relationship="Self.FK_Administrator_Register" FromRole="Administrator" ToRole="Register" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fathersname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="datebirth" Type="Time" Precision="7" />
+          <Property Name="seriespassport" Type="Int32" />
+          <Property Name="numberpassport" Type="Int32" />
+          <Property Name="telephone" Type="String" MaxLength="14" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="numberpolicy" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="typepolicy" Type="Int32" />
+          <Property Name="idcompany" Type="Int32" />
+          <Property Name="ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lastenter" Type="Time" Precision="7" />
+          <Property Name="id_register" Type="Int32" />
+          <NavigationProperty Name="Register" Relationship="Self.FK_Client_Register" FromRole="Client" ToRole="Register" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="data_created" Type="Time" Precision="7" />
+          <Property Name="services" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="id_status" Type="Int32" />
+          <Property Name="id_status_service" Type="Int32" />
+          <Property Name="order_time" Type="Time" Precision="7" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Order_Status" FromRole="Order" ToRole="Status" />
+          <NavigationProperty Name="Status_Services_" Relationship="Self.FK_Order_Status_Services_" FromRole="Order" ToRole="Status_Services_" />
+        </EntityType>
+        <Association Name="FK_Status_Services__Analyzer">
+          <End Role="Analyzer" Type="Self.Analyzer" Multiplicity="0..1" />
+          <End Role="Status_Services_" Type="Self.Status_Services_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzer">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_Services_">
+              <PropertyRef Name="id_analyzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accountant_CheckCompany">
+          <End Role="CheckCompany" Type="Self.CheckCompany" Multiplicity="0..1" />
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CheckCompany">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accountant">
+              <PropertyRef Name="id_insurance_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CheckCompany_InsuranceCompany">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="CheckCompany" Type="Self.CheckCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CheckCompany">
+              <PropertyRef Name="id_insurance_company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LabAssistant_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="LabAssistant" Type="Self.LabAssistant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="LabAssistant">
+              <PropertyRef Name="id_register" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_LabAssistant">
+          <End Role="LabAssistant" Type="Self.LabAssistant" Multiplicity="0..1" />
+          <End Role="Service" Type="Self.Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LabAssistant">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Service">
+              <PropertyRef Name="id_assistant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accountant_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accountant">
+              <PropertyRef Name="id_register" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Administrator_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="Administrator" Type="Self.Administrator" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Administrator">
+              <PropertyRef Name="id_registar" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Client_Register">
+          <End Role="Register" Type="Self.Register" Multiplicity="0..1" />
+          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Register">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Client">
+              <PropertyRef Name="id_register" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Accountant_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Accountant" Type="Self.Accountant" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Accountant">
+              <PropertyRef Name="id_laboratory_services" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Services__Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Status_Services_" Type="Self.Status_Services_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_Services_">
+              <PropertyRef Name="id_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_Services__Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+          <End Role="Status_Services_" Type="Self.Status_Services_" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Status_Services_">
+              <PropertyRef Name="id_status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Status_Services_">
+          <End Role="Status_Services_" Type="Self.Status_Services_" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status_Services_">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="id_status_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LabEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Analyzer" EntityType="Self.Analyzer" />
+          <EntitySet Name="CheckCompany" EntityType="Self.CheckCompany" />
+          <EntitySet Name="InsuranceCompany" EntityType="Self.InsuranceCompany" />
+          <EntitySet Name="LabAssistant" EntityType="Self.LabAssistant" />
+          <EntitySet Name="Register" EntityType="Self.Register" />
+          <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Status_Services_" EntityType="Self.Status_Services_" />
+          <EntitySet Name="Accountant" EntityType="Self.Accountant" />
+          <EntitySet Name="Administrator" EntityType="Self.Administrator" />
+          <EntitySet Name="Client" EntityType="Self.Client" />
+          <EntitySet Name="Order" EntityType="Self.Order" />
+          <AssociationSet Name="FK_Status_Services__Analyzer" Association="Self.FK_Status_Services__Analyzer">
+            <End Role="Analyzer" EntitySet="Analyzer" />
+            <End Role="Status_Services_" EntitySet="Status_Services_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accountant_CheckCompany" Association="Self.FK_Accountant_CheckCompany">
+            <End Role="CheckCompany" EntitySet="CheckCompany" />
+            <End Role="Accountant" EntitySet="Accountant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CheckCompany_InsuranceCompany" Association="Self.FK_CheckCompany_InsuranceCompany">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="CheckCompany" EntitySet="CheckCompany" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LabAssistant_Register" Association="Self.FK_LabAssistant_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="LabAssistant" EntitySet="LabAssistant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_LabAssistant" Association="Self.FK_Service_LabAssistant">
+            <End Role="LabAssistant" EntitySet="LabAssistant" />
+            <End Role="Service" EntitySet="Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accountant_Register" Association="Self.FK_Accountant_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="Accountant" EntitySet="Accountant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Administrator_Register" Association="Self.FK_Administrator_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="Administrator" EntitySet="Administrator" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Client_Register" Association="Self.FK_Client_Register">
+            <End Role="Register" EntitySet="Register" />
+            <End Role="Client" EntitySet="Client" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Accountant_Service" Association="Self.FK_Accountant_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Accountant" EntitySet="Accountant" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Services__Service" Association="Self.FK_Status_Services__Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Status_Services_" EntitySet="Status_Services_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_Services__Status" Association="Self.FK_Status_Services__Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Status_Services_" EntitySet="Status_Services_" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Status_Services_" Association="Self.FK_Order_Status_Services_">
+            <End Role="Status_Services_" EntitySet="Status_Services_" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LabModelContainer" CdmEntityContainer="LabEntities">
+          <EntitySetMapping Name="Analyzer">
+            <EntityTypeMapping TypeName="LabModel.Analyzer">
+              <MappingFragment StoreEntitySet="Analyzer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="time_order" ColumnName="time_order" />
+                <ScalarProperty Name="time_work" ColumnName="time_work" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckCompany">
+            <EntityTypeMapping TypeName="LabModel.CheckCompany">
+              <MappingFragment StoreEntitySet="CheckCompany">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_insurance_company" ColumnName="id_insurance_company" />
+                <ScalarProperty Name="check" ColumnName="check" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCompany">
+            <EntityTypeMapping TypeName="LabModel.InsuranceCompany">
+              <MappingFragment StoreEntitySet="InsuranceCompany">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="namecompany" ColumnName="namecompany" />
+                <ScalarProperty Name="addresscompany" ColumnName="addresscompany" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="BIK" ColumnName="BIK" />
+                <ScalarProperty Name="checkingaccount" ColumnName="checkingaccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabAssistant">
+            <EntityTypeMapping TypeName="LabModel.LabAssistant">
+              <MappingFragment StoreEntitySet="LabAssistant">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="labwork" ColumnName="labwork" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="fathername" ColumnName="fathername" />
+                <ScalarProperty Name="lastdatientrance" ColumnName="lastdatientrance" />
+                <ScalarProperty Name="service" ColumnName="service" />
+                <ScalarProperty Name="id_register" ColumnName="id_register" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Register">
+            <EntityTypeMapping TypeName="LabModel.Register">
+              <MappingFragment StoreEntitySet="Register">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service">
+            <EntityTypeMapping TypeName="LabModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="servicecode" ColumnName="servicecode" />
+                <ScalarProperty Name="servicename" ColumnName="servicename" />
+                <ScalarProperty Name="timework" ColumnName="timework" />
+                <ScalarProperty Name="id_assistant" ColumnName="id_assistant" />
+                <ScalarProperty Name="analyzer" ColumnName="analyzer" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="LabModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status_Services_">
+            <EntityTypeMapping TypeName="LabModel.Status_Services_">
+              <MappingFragment StoreEntitySet="Status_Services ">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_service" ColumnName="id_service" />
+                <ScalarProperty Name="id_laborant" ColumnName="id_laborant" />
+                <ScalarProperty Name="id_analyzer" ColumnName="id_analyzer" />
+                <ScalarProperty Name="date" ColumnName="date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accountant">
+            <EntityTypeMapping TypeName="LabModel.Accountant">
+              <MappingFragment StoreEntitySet="Accountant">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_register" ColumnName="id_register" />
+                <ScalarProperty Name="last_login_date" ColumnName="last_login_date" />
+                <ScalarProperty Name="id_laboratory_services" ColumnName="id_laboratory_services" />
+                <ScalarProperty Name="id_insurance_company" ColumnName="id_insurance_company" />
+                <ScalarProperty Name="id_check" ColumnName="id_check" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Administrator">
+            <EntityTypeMapping TypeName="LabModel.Administrator">
+              <MappingFragment StoreEntitySet="Administrator">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_registar" ColumnName="id_registar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Client">
+            <EntityTypeMapping TypeName="LabModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="fathersname" ColumnName="fathersname" />
+                <ScalarProperty Name="datebirth" ColumnName="datebirth" />
+                <ScalarProperty Name="seriespassport" ColumnName="seriespassport" />
+                <ScalarProperty Name="numberpassport" ColumnName="numberpassport" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="numberpolicy" ColumnName="numberpolicy" />
+                <ScalarProperty Name="typepolicy" ColumnName="typepolicy" />
+                <ScalarProperty Name="idcompany" ColumnName="idcompany" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="lastenter" ColumnName="lastenter" />
+                <ScalarProperty Name="id_register" ColumnName="id_register" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order">
+            <EntityTypeMapping TypeName="LabModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="data_created" ColumnName="data_created" />
+                <ScalarProperty Name="services" ColumnName="services" />
+                <ScalarProperty Name="id_status" ColumnName="id_status" />
+                <ScalarProperty Name="id_status_service" ColumnName="id_status_service" />
+                <ScalarProperty Name="order_time" ColumnName="order_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

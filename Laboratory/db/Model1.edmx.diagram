@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f0955b3aa65b4f769cb4c4f5c44e19cd" Name="Diagram1">
+        <EntityTypeShape EntityType="LabModel.Analyzer" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.CheckCompany" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.InsuranceCompany" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.LabAssistant" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Register" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Service" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Status" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Status_Services_" Width="1.5" PointX="7.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Accountant" Width="1.5" PointX="7.5" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Administrator" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Client" Width="1.5" PointX="3" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LabModel.Order" Width="1.5" PointX="9.75" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="LabModel.FK_Status_Services__Analyzer" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Accountant_CheckCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_CheckCompany_InsuranceCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_LabAssistant_Register" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Service_LabAssistant" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Accountant_Register" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Administrator_Register" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Client_Register" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Accountant_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Status_Services__Service" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Order_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Status_Services__Status" ManuallyRouted="false" />
+        <AssociationConnector Association="LabModel.FK_Order_Status_Services_" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
